@@ -17,6 +17,7 @@
 | CERTBOT_CHALLENGE              | Specify the challenge to use. `http` or `dns`                                          | http      |
 | CERTBOT_MANUAL_AUTH_HOOK       | Manual auth script to register DNS subdomains. **Required** with `dns` challenge       |           |
 | CERTBOT_MANUAL_CLEANUP_HOOK    | Manual cleanup script to clean DNS subdomains. **Required** with `dns` challenge       |           |
+| CERTBOT_DIGITALOCEAN_CREDENTIALS    | DigitalOcean credentials file. **Required** with `dns_digitalocean` challenge.       |           |
 | DF_PROXY_SERVICE_NAME          | Name of the docker-flow-proxy service (either SERVICE-NAME or STACK-NAME_SERVICE-NAME).| proxy     |
 | DF_SWARM_LISTENER_SERVICE_NAME | Name of the docker-flow-proxy service. Used to force cert renewal.                     | swarm-listener |
 | DOCKER_SOCKET_PATH             | Path to the docker socket. Required for docker secrets support.                        | /var/run/docker.sock      |

@@ -34,5 +34,5 @@ docker service create --name proxy_proxy-le \
     -e CERTBOT_DIGITALOCEAN_CREDENTIALS=/run/secrets/digitalocean.ini \
     --secret digitalocean.ini \
     --mount "type=volume,source=le-certs,destination=/etc/letsencrypt" \
-    nib0r/docker-flow-proxy-letsencrypt
+    redpandacloud/docker-flow-proxy-letsencrypt:0.8.2
 ```
