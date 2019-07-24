@@ -139,16 +139,18 @@ class DFPLEClient():
 
             # if multiple domains comma separated, take only the first one
             base_domain = domains[0]
+            domain_folder = base_domain
 
             # wildcard domains are stored with domain name
             if base_domain.startswith( '*.' ):
+                domain_folder = "_{}".format( base_domain[1:] )
                 base_domain = base_domain[2:]
 
             # generate combined certificate needed for haproxy
-            combined_path = os.path.join(self.certbot_folder, 'live', base_domain, "combined.pem")
+            combined_path = os.path.join(self.certbot_folder, 'live', domain_folder, "combined.pem")
             with open(combined_path, "w") as combined, \
-                 open(os.path.join(self.certbot_folder, 'live', base_domain, "privkey.pem"), "r") as priv, \
-                 open(os.path.join(self.certbot_folder, 'live', base_domain, "fullchain.pem"), "r") as fullchain:
+                 open(os.path.join(self.certbot_folder, 'live', domain_folder, "privkey.pem"), "r") as priv, \
+                 open(os.path.join(self.certbot_folder, 'live', domain_folder, "fullchain.pem"), "r") as fullchain:
 
                 combined.write(fullchain.read())
                 combined.write(priv.read())
@@ -164,7 +166,7 @@ class DFPLEClient():
 
                 # generate symlinks
                 os.symlink(
-                    os.path.join('./live', base_domain, "{}.pem".format(cert_type)),
+                    os.path.join('./live', domain_folder, "{}.pem".format(cert_type)),
                     dest_file)
 
                 certs[domain].append(dest_file)
